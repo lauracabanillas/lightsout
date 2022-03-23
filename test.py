@@ -34,6 +34,8 @@ def multiplication(m1,m2):
 
 def pivot(etape):
     # super bien code
+    if etape==3:
+        print("laulau")
 
 
     # pivot : renvoie la ligne du 1er truc dont le coef est différent de 0 en haut à gauche, et de plus en plus à droite, qui prend en argument l'étape à laquelle on est
