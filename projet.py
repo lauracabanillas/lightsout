@@ -106,6 +106,7 @@ class game:
         self.light24.draw(screen)
         self.light25.draw(screen)
         self.light_out5.draw(screen)
+        self.light_out10.draw(screen)
         self.pika.draw(screen)
     
         self.bulle2.draw(screen)     

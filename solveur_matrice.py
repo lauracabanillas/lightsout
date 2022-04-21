@@ -40,16 +40,36 @@ def multiplication25(m1,m2):
 
     print(resultat)       
     
+def pivot(m,etape): #renvoie le numéro du pivot qu'on va utiliser : le 1er avec un chiffre différent de 0
+    n=len(m)
+    np=etape #numéro d'étape provisoire
+        
+    for i in range(etape+1, n):#boucle sur les lignes restantes
+        if abs(m[i, etape])>abs(m[np,etape]) :
+            np=i
+    return np
 
 
-#def multiplier(ma, mb):
- #   mfinal = []
-  #  for i in range(len(ma)):
-   #     for j in range(len(mb)):
+def transvection(mat, s): #s est le numéro du pivot utilisé / additionne la ligne et la ligne du dessous
+    n=len(mat)
+    p=25
+    result=mat
+    for lig in range(s+1, n):
+        for col in range(s,p):
+            result[lig, col]=plus(result[lig,col], result[s,col])
+    return result
+        
+def permute(m,i,j) :  #permute 2 lignes
+    n=len(m)
+    p=25
+    mat=m # copie
+    for k in range (p) : # boucle sur les colonnes
+        mat[i,k],mat[j,k]=mat[j,k],mat[i,k]
+    return mat
 
 
-
-multiplication25(A,B)
+a=transvection(A,0)
+print(a)
 
 
 
