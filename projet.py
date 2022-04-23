@@ -93,7 +93,7 @@ class game:
                         self.grille[i,j]=1
                     if i+1 >4:
                         continue
-                    elif 
+                    elif self.grille[]
 
 
         
