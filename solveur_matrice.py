@@ -67,6 +67,18 @@ def permute(m,i,j) :  #permute 2 lignes
         mat[i,k],mat[j,k]=mat[j,k],mat[i,k]
     return mat
 
+def perpendiculaire(a,b):
+    somme=0
+    if len(a)!=len(b):
+        return False
+    else:
+        for i in range(len(a)):
+            somme+= a[i]*b[i]
+        if somme !=0:
+            return False
+        else:
+            return True
+
 
 a=transvection(A,0)
 print(a)

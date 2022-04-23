@@ -28,6 +28,8 @@ class Lights:
             screen.blit(self.image, self.rect)
 
         return event
+
+    
                 
 
 

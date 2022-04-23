@@ -114,4 +114,3 @@ def perpendiculaire(a,b):
 #a=transvection2(array1,0)
 #print(a)
 print(perpendiculaire(c,d))
-print("hello")
