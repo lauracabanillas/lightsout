@@ -1,8 +1,12 @@
 import numpy as np
 array1 = np.matrix("1 1 0 0 0 ; 1 1 1 0 1; 1 1 1 0 0; 0 1 1 0 1 ; 0 0 0 1 1 ")
 array2 = np.matrix("1 0 0 0 0; 0 1 0 0 0 ; 0 0 1 0 0 ; 0 0 0 1 0 ; 0 0 0 0 1")
+a=[1,2,3,4]
+b=[1,2,3,4]
+c=[1,0,0,-1]
+d=[0,1,0,0]
 #resultat = np.matrix(np.zeros((5,5)))
-#hekgcfjkjgkfjcgekc
+
 def plus(a,b):
     if a==b:
         return 0
@@ -86,11 +90,27 @@ def gauss(mat):
         mat=transvection(mat,s)
     print(mat)
 
+def perpendiculaire(a,b):
+    somme=0
+    if len(a)!=len(b):
+        return False
+    else:
+        for i in range(len(a)):
+            somme+= a[i]*b[i]
+        if somme !=0:
+            return False
+        else:
+            return True
+
     
+
+
+
+   
 
 
     # pivot : renvoie la ligne du 1er truc dont le coef est différent de 0 en haut à gauche, et de plus en plus à droite, qui prend en argument l'étape à laquelle on est
     # permuter : échange 2 lignes
 #a=transvection2(array1,0)
 #print(a)
-gauss(array1)
+print(perpendiculaire(c,d))
