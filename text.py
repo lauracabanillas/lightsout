@@ -10,3 +10,6 @@ class Message:
 
     def message1(self, screen):
         screen.blit(self.image, self.rect)
+
+
+# hello there

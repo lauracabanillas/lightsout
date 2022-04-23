@@ -2,7 +2,7 @@ import numpy as np
 array1 = np.matrix("1 1 0 0 0 ; 1 1 1 0 1; 1 1 1 0 0; 0 1 1 0 1 ; 0 0 0 1 1 ")
 array2 = np.matrix("1 0 0 0 0; 0 1 0 0 0 ; 0 0 1 0 0 ; 0 0 0 1 0 ; 0 0 0 0 1")
 #resultat = np.matrix(np.zeros((5,5)))
-
+#hekgcfjkjgkfjcgekc
 def plus(a,b):
     if a==b:
         return 0
