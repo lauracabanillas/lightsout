@@ -106,7 +106,7 @@ def perpendiculaire(a,b):
 
 
 
-   
+    
 
 
     # pivot : renvoie la ligne du 1er truc dont le coef est différent de 0 en haut à gauche, et de plus en plus à droite, qui prend en argument l'étape à laquelle on est
