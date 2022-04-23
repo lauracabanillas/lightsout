@@ -21,10 +21,16 @@ class game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_presses = pygame.mouse.get_pressed()
+                    if mouse_presses[0]:
+                        pos = pygame.mouse.get_pos()
+                        self.grid[pos[0]//IMAGE_SIZE][pos[1]//IMAGE_SIZE] = 1
+                        print("Left Mouse key was clicked")
 
     def update(self):
-        self.grid[math.floor(random()*5)][math.floor(random()*5)] = math.floor(random()*2)
-        
+        #self.grid[math.floor(random()*5)][math.floor(random()*5)] = math.floor(random()*2)
+        pass
 
     def display(self):
         if self.mode == 0:
