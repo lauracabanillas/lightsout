@@ -113,4 +113,4 @@ def perpendiculaire(a,b):
     # permuter : échange 2 lignes
 #a=transvection2(array1,0)
 #print(a)
-gauss(array1)
+print(perpendiculaire(c,d))
