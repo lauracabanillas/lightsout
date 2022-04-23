@@ -5,16 +5,17 @@ import time
 
 IMAGE_SIZE = 100
 DIRECTIONS = [
-    (1,1),
+    #(1,1),
     (1,0),
-    (1,-1),
-    (-1,1),
+    #(1,-1),
+    #(-1,1),
     (-1,0),
-    (-1,-1),
+    #(-1,-1),
     (0,1),
     (0,0),
     (0,-1),
 ]
+
 lightOn = pygame.transform.scale(pygame.image.load("./images/light.jpg"), (IMAGE_SIZE,IMAGE_SIZE))
 lightOff = pygame.transform.scale(pygame.image.load("./images/light_out.jpg"), (IMAGE_SIZE,IMAGE_SIZE))
 
@@ -46,13 +47,17 @@ class game:
             if 0<=pos[0]//IMAGE_SIZE+direction[0] <5 and 0<= pos[1]//IMAGE_SIZE+direction[1] < 5:
                 self.toggle(pos[0]//IMAGE_SIZE+direction[0], pos[1]//IMAGE_SIZE+direction[1])
 
+        self.checkWin()
+
+
     def toggle(self, i, j):
         self.grid[i][j]=(self.grid[i][j]+1)%2
-        #self.checkWin()
         #self.grid[math.floor(random()*5)][math.floor(random()*5)] = math.floor(random()*2)
         
     def checkWin(self):
-        pass
+        if not any(1 in x for x in self.grid):
+            print("won !")
+            self.running = False
 
     def display(self):
         if self.mode == 0:
