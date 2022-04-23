@@ -24,7 +24,7 @@ class game:
         self.images = [lightOn, lightOff]
         self.mode = mode
         self.running = True
-        self.grid = [[0 for x in range(5)] for y in range(5)]
+        self.grid = [[math.floor(random()*2) for x in range(5)] for y in range(5)]
         
     def handling_events(self):
         while self.running:
