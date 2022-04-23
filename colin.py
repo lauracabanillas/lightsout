@@ -2,7 +2,7 @@ import math
 from random import random
 import pygame
 
-IMAGE_SIZE = 200
+IMAGE_SIZE = 100
 lightOn = pygame.transform.scale(pygame.image.load("./images/light.jpg"), (IMAGE_SIZE,IMAGE_SIZE))
 lightOff = pygame.transform.scale(pygame.image.load("./images/light_out.jpg"), (IMAGE_SIZE,IMAGE_SIZE))
 
@@ -34,7 +34,7 @@ class game:
             #print("in pygame window")
             for i in range(5):
                 for j in range(5):
-                    self.screen.blit(self.images[self.grid[i][j]], (i*IMAGE_SIZE,IMAGE_SIZE, j*IMAGE_SIZE,IMAGE_SIZE))
+                    self.screen.blit(self.images[self.grid[i][j]], (i*IMAGE_SIZE,j*IMAGE_SIZE))
             pygame.display.update()
 
     def run(self):
