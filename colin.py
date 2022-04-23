@@ -25,7 +25,7 @@ class game:
 
     def update(self):
         self.grid[math.floor(random()*5)][math.floor(random()*5)] = math.floor(random()*2)
-        time.sleep(2)
+        time.sleep(0.5)
         
 
     def display(self):
