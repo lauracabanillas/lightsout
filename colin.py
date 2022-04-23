@@ -4,6 +4,17 @@ import pygame
 import time
 
 IMAGE_SIZE = 100
+DIRECTIONS = [
+    (1,1),
+    (1,0),
+    (1,-1),
+    (-1,1),
+    (-1,0),
+    (-1,-1),
+    (0,1),
+    (0,0),
+    (0,-1),
+]
 lightOn = pygame.transform.scale(pygame.image.load("./images/light.jpg"), (IMAGE_SIZE,IMAGE_SIZE))
 lightOff = pygame.transform.scale(pygame.image.load("./images/light_out.jpg"), (IMAGE_SIZE,IMAGE_SIZE))
 
@@ -17,7 +28,6 @@ class game:
         
     def handling_events(self):
         while self.running:
-            self.update()
             self.display()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -25,12 +35,23 @@ class game:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse_presses = pygame.mouse.get_pressed()
                     if mouse_presses[0]:
-                        pos = pygame.mouse.get_pos()
-                        self.grid[pos[0]//IMAGE_SIZE][pos[1]//IMAGE_SIZE] = 1
+                        self.handle_click()
                         print("Left Mouse key was clicked")
 
-    def update(self):
+    def handle_click(self):
+        pos = pygame.mouse.get_pos()
+        if pos[0] >= 5*IMAGE_SIZE or pos[1] >= 5*IMAGE_SIZE:
+            return
+        for direction in DIRECTIONS:
+            if 0<=pos[0]//IMAGE_SIZE+direction[0] <5 and 0<= pos[1]//IMAGE_SIZE+direction[1] < 5:
+                self.toggle(pos[0]//IMAGE_SIZE+direction[0], pos[1]//IMAGE_SIZE+direction[1])
+
+    def toggle(self, i, j):
+        self.grid[i][j]=(self.grid[i][j]+1)%2
+        #self.checkWin()
         #self.grid[math.floor(random()*5)][math.floor(random()*5)] = math.floor(random()*2)
+        
+    def checkWin(self):
         pass
 
     def display(self):
