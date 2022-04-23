@@ -106,12 +106,11 @@ def perpendiculaire(a,b):
 
 
 
-   
+    
 
 
     # pivot : renvoie la ligne du 1er truc dont le coef est différent de 0 en haut à gauche, et de plus en plus à droite, qui prend en argument l'étape à laquelle on est
     # permuter : échange 2 lignes
 #a=transvection2(array1,0)
 #print(a)
-print(perpendiculaire(c,d))
-print("hello")
+gauss(array1)

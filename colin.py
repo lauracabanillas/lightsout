@@ -1,6 +1,7 @@
 import math
 from random import random
 import pygame
+import time
 
 IMAGE_SIZE = 100
 lightOn = pygame.transform.scale(pygame.image.load("./images/light.jpg"), (IMAGE_SIZE,IMAGE_SIZE))
@@ -24,6 +25,7 @@ class game:
 
     def update(self):
         self.grid[math.floor(random()*5)][math.floor(random()*5)] = math.floor(random()*2)
+        time.sleep(2)
         
 
     def display(self):
