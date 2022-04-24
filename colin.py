@@ -27,7 +27,7 @@ class game:
         self.images = [lightOn, lightOff]
         self.mode = mode
         self.running = True
-        self.grid = [[math.floor(random()*2) for x in range(5)] for y in range(5)]   #on met le *2 car ça nous fait un truc random entre 0 et 2, et en prenant le floor ça nous fait 0 ou 1
+        self.grid = [[math.floor(random()*2) for x in range(5)] for y in range(5)]   
         self.pika = pygame.transform.scale(pygame.image.load("./images/pikatchu.jpg"), (200,400))
         self.bulle1 = pygame.transform.scale(pygame.image.load("./images/image_bulle1.png"), (330,250))
 

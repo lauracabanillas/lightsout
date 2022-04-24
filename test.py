@@ -59,12 +59,8 @@ def mult_vecteur(m,v):
     for lig in range(5):
         for col in range(5):
             a=plus(a,mult(m[lig,col],v[col]))
-        v.append(a)
+        res.append(a)
     return v
-
-
-
-
 
 def pivot(m,etape):
     n=len(m)
