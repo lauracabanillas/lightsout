@@ -2,6 +2,8 @@ import math
 from random import random
 import pygame
 import time
+import solveur_matrice
+import numpy as np
 
 IMAGE_SIZE = 100
 DIRECTIONS = [
@@ -25,8 +27,10 @@ class game:
         self.images = [lightOn, lightOff]
         self.mode = mode
         self.running = True
-        self.grid = [[math.floor(random()*2) for x in range(5)] for y in range(5)]
-        
+        self.grid = [[math.floor(random()*2) for x in range(5)] for y in range(5)]   #on met le *2 car ça nous fait un truc random entre 0 et 2, et en prenant le floor ça nous fait 0 ou 1
+        self.pika = pygame.transform.scale(pygame.image.load("./images/pikatchu.jpg"), (200,400))
+        self.bulle1 = pygame.transform.scale(pygame.image.load("./images/image_bulle1.png"), (330,250))
+
     def handling_events(self):
         while self.running:
             self.display()
@@ -41,26 +45,29 @@ class game:
 
     def handle_click(self):
         pos = pygame.mouse.get_pos()
-        if pos[0] >= 5*IMAGE_SIZE or pos[1] >= 5*IMAGE_SIZE:
-            return
+        if pos[0] >= 5*IMAGE_SIZE or pos[1] >= 5*IMAGE_SIZE:   #pos[0]= la position en x, et pos[1] la position en y
+            return                                       #pourquoi y a un return avec rien
         for direction in DIRECTIONS:
-            if 0<=pos[0]//IMAGE_SIZE+direction[0] <5 and 0<= pos[1]//IMAGE_SIZE+direction[1] < 5:
-                self.toggle(pos[0]//IMAGE_SIZE+direction[0], pos[1]//IMAGE_SIZE+direction[1])
+            if 0<=pos[0]//IMAGE_SIZE+direction[0] <5 and 0<= pos[1]//IMAGE_SIZE+direction[1] < 5:   #pourquoi c'est compris entre 0 et 5 ?
+                self.toggle(pos[0]//IMAGE_SIZE+direction[0], pos[1]//IMAGE_SIZE+direction[1])    #comment ce truc change le truc qu'on clique et les 4 autoue ?
 
         self.checkWin()
 
 
     def toggle(self, i, j):
-        self.grid[i][j]=(self.grid[i][j]+1)%2
+        self.grid[i][j]=(self.grid[i][j]+1)%2  #si c'est 0, il affiche 1, et sinon il affiche 0
         #self.grid[math.floor(random()*5)][math.floor(random()*5)] = math.floor(random()*2)
         
-    def checkWin(self):
-        if not any(1 in x for x in self.grid):
+    def checkWin(self):          #si la matrice ne contient que des 0, on affiche "won" et le jeu s'arrête
+        if not any(0 in x for x in self.grid):
             print("won !")
             self.running = False
+        if not solveur_matrice.soluble(np.matrix(self.grid)):
+            print("la configuration n'etait pas soluble, veuillez recommencer")
+            self.running = False
 
-    def display(self):
-        if self.mode == 0:
+    def display(self):     #affiche la matrice
+        if self.mode == 0:                 #quand on est en mode 0, il affiche juste la matrice dans le terminal
             print("----------- grid ---------")
             print(self.grid)
         else:
@@ -68,10 +75,12 @@ class game:
             for i in range(5):
                 for j in range(5):
                     self.screen.blit(self.images[self.grid[i][j]], (i*IMAGE_SIZE,j*IMAGE_SIZE))
+            screen.blit(self.pika,(800,300))
+            screen.blit(self.bulle1, (600,100))
             pygame.display.update()
 
     def run(self):
-        while self.running:
+        while self.running:   #tant qu'on n'a pas arrêté le code, il rafraîchit les évènements
             self.handling_events()
 
 pygame.init()

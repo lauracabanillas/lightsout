@@ -1,10 +1,17 @@
 import numpy as np
-array1 = np.matrix("1 1 0 0 0 ; 1 1 1 0 1; 1 1 1 0 0; 0 1 1 0 1 ; 0 0 0 1 1 ")
-array2 = np.matrix("1 0 0 0 0; 0 1 0 0 0 ; 0 0 1 0 0 ; 0 0 0 1 0 ; 0 0 0 0 1")
-a=[1,2,3,4]
+array1 = np.matrix("1 0 0 0 0 ; 1 0 1 0 1; 1 1 1 0 0; 0 0 1 0 1 ; 0 0 0 0 1 ")
+array2 = np.matrix("0 0 0 0 0; 0 0 0 0 0 ; 0 0 0 0 0 ; 0 0 0 0 0 ; 0 0 0 0 0")
+array_solvable = np.matrix("0 0 0 0 0; 0 0 1 0 0 ; 0 1 1 1 0 ; 0 0 1 0 0 ; 0 0 0 0 0")
+
+v1=[0,1,1,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,0,1,0,1,1,1,0]
+v2=[1,0,1,0,1,1,0,1,0,1,0,0,0,0,0,1,0,1,0,1,1,0,1,0,1]
+a=[1,2,3,4,5]
 b=[1,2,3,4]
 c=[1,0,0,-1]
-d=[0,1,0,0]
+d=[0,1,0,0,1]
+e = len(array1)
+f = len(array2[0])
+laulau=np.zeros([e,f])
 #resultat = np.matrix(np.zeros((5,5)))
 
 def plus(a,b):
@@ -37,14 +44,26 @@ def mult_reel(chiffre, matrice):
 
 
 def multiplication(m1,m2):
+
+  #  resultat=np.zeros(len(m1), len(m2[0]))
     resultat = np.matrix("0 0 0 0 0;0 0 0 0 0;0 0 0 0 0;0 0 0 0 0;0 0 0 0 0")
     for lig in range(5):
         for col in range(5):
             for a in range(5):
- 
-                resultat[lig, col] = plus(resultat[lig,col],mult(m1[lig,a], m2[a,col]))
+                resultat[lig,col] = plus(resultat[lig,col],mult(m1[lig,a], m2[a,col]))
+    return resultat
 
-    print(resultat)
+def mult_vecteur(m,v):
+    a=0
+    res=[]
+    for lig in range(5):
+        for col in range(5):
+            a=plus(a,mult(m[lig,col],v[col]))
+        v.append(a)
+    return v
+
+
+
 
 
 def pivot(m,etape):
@@ -96,21 +115,26 @@ def perpendiculaire(a,b):
         return False
     else:
         for i in range(len(a)):
-            somme+= a[i]*b[i]
+            somme= plus(somme,mult(a[i],b[i]))
         if somme !=0:
             return False
         else:
             return True
 
-    
-
-
-
-    
+def soluble(conf_init):
+    v1=[0,1,1,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,0,1,0,1,1,1,0]
+    v2=[1,0,1,0,1,1,0,1,0,1,0,0,0,0,0,1,0,1,0,1,1,0,1,0,1]
+    vecteur = []
+    for i in range(len(conf_init)):
+        for j in range(5):
+            vecteur.append(conf_init[i,j])
+           
+    return (perpendiculaire(v1, vecteur) and perpendiculaire(v2,vecteur))
+        
 
 
     # pivot : renvoie la ligne du 1er truc dont le coef est différent de 0 en haut à gauche, et de plus en plus à droite, qui prend en argument l'étape à laquelle on est
     # permuter : échange 2 lignes
 #a=transvection2(array1,0)
 #print(a)
-print(perpendiculaire(c,d))
+print(mult_vecteur(array1,d))
