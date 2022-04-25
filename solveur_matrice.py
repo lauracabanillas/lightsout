@@ -109,6 +109,7 @@ def pivot_de_gauss (mat, identite):
     return matrice
 
 
+#pour savoir si soluble
 
 def perpendiculaire(a,b):
     somme=0
