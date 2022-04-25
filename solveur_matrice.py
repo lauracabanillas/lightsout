@@ -101,8 +101,6 @@ def soluble(conf_init):
     return (perpendiculaire(v1, vecteur) and perpendiculaire(v2,vecteur))
 
 
-print(mult_vecteur(A,v1))
-
 
 
 

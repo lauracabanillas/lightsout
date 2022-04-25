@@ -143,6 +143,21 @@ print(pivot_de_gauss_general(A))
 
 
 
+def pivot_de_gauss_I (mat, identite):
+    matrice = mat
+    I = identite
+    for i in range(25) :
+        colonne = i
+        ligne_diff_0 = i + 1
+        while matrice[i,colonne] == 0 and ligne_diff_0 < 25:
+            permute(matrice, i, ligne_diff_0)
+            permute(I, i, ligne_diff_0)
+            ligne_diff_0 += 1
+        for ligne in range (i + 1,25):
+            if matrice[ligne,colonne] != 0 :    
+                addition_ligne(matrice,ligne,i)
+                addition_ligne(I,ligne,i)
+    return I
 
 
 
