@@ -50,13 +50,13 @@ def multiplication25(m1,m2):
     return resultat
 
 def mult_vecteur(m,v):
-    a=0
     res=[]
     for lig in range(25):
+        a = 0
         for col in range(25):
-            a=plus(a,mult(m[lig,col],v[col]))
+            a = plus(a, mult(m[lig,col],v[col]))
         res.append(a)
-    return v      
+    return res   
     
 #inutile
 def pivot(m,etape): 
