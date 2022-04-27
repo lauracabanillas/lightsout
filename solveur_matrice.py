@@ -161,11 +161,18 @@ def mult_vecteur(m,v):
         res.append(a)
     return res
 
-hello = pivot_de_gauss(A,I)
-#print(hello[0])
-#print("")
-#print(hello[1])
+def solution(invA, conf_init):
+    vecteur_init = []
+    for i in range(len(conf_init)):
+        for j in range(5):
+            vecteur_init.append(conf_init[i,j])
+    return mult_vecteur(invA,conf_init)
 
-print(array_solvable25)
+hello = pivot_de_gauss(A,I)
+print(hello[0])
+print("")
+print(hello[1])
+
+#print(array_solvable25)
 
 #print(mult_vecteur(hello[1],array_solvable))
