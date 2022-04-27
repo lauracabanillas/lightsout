@@ -99,13 +99,17 @@ a=5
 def pivot_de_gauss (mat, identite):
     matrice = mat
     I = identite
-    for i in range(25) : 
+    for i in range(25) :
         colonne = i
         ligne_diff_0 = i + 1
         while matrice[i,colonne] == 0 and ligne_diff_0 < 25:
             permute(matrice, i, ligne_diff_0)
             permute(I, i, ligne_diff_0)
             ligne_diff_0 += 1
+        for ligne in range (0,i):
+            if matrice[ligne,colonne] != 0 :    
+                addition_ligne(matrice,ligne,i)
+                addition_ligne(I,ligne,i)    
         for ligne in range (i + 1,25):
             if matrice[ligne,colonne] != 0 :    
                 addition_ligne(matrice,ligne,i)
@@ -113,7 +117,15 @@ def pivot_de_gauss (mat, identite):
     return matrice, I
 
 
+
 #pour savoir si soluble
+
+def recup_vecteur_colonne(mat,numero): #renvoie le vecteur de la colonne (allant de 1 a 25) 'numero' en liste
+    vect = []
+    for ligne in range(0,25):
+        vect = vect + [mat[ligne,numero-1]]
+    return vect
+
 def perpendiculaire(a,b):
     somme=0
     if len(a)!=len(b):
@@ -127,8 +139,10 @@ def perpendiculaire(a,b):
             return True
 
 def soluble(conf_init):
-    v1=[0,1,1,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,0,1,0,1,1,1,0]
-    v2=[1,0,1,0,1,1,0,1,0,1,0,0,0,0,0,1,0,1,0,1,1,0,1,0,1]
+    v1 = recup_vecteur_colonne(pivot_de_gauss(A,I)[0],24)
+    v2 = recup_vecteur_colonne(pivot_de_gauss(A,I)[0],25)
+    #v1=[0,1,1,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,0,1,0,1,1,1,0]
+    #v2=[1,0,1,0,1,1,0,1,0,1,0,0,0,0,0,1,0,1,0,1,1,0,1,0,1]
     vecteur = []
     for i in range(len(conf_init)):
         for j in range(5):
@@ -136,13 +150,9 @@ def soluble(conf_init):
            
     return (perpendiculaire(v1, vecteur) and perpendiculaire(v2,vecteur))
 
-def ordre(a,b):
-    if a <= b:
-        return a, b
-    else:
-        return b, a
+hello = pivot_de_gauss(A,I)
+#print(hello[0])
+#print("")
+#print(hello[1])
 
-matrice_identite = pivot_de_gauss(A,I)
-print(matrice_identite[0])
-print("")
-print(matrice_identite[1])
+print(soluble(array_solvable))

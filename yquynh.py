@@ -154,19 +154,41 @@ def pivot_de_gauss_I (mat, identite):
                 addition_ligne(I,ligne,i)
     return I
 
-print("I :")
-print(I)
-print("")
+def pivot_de_gauss_full (mat, identite):
+    matrice = mat
+    I = identite
+    for i in range(25) :
+        colonne = i
+        ligne_diff_0 = i + 1
+        while matrice[i,colonne] == 0 and ligne_diff_0 < 25:
+            permute(matrice, i, ligne_diff_0)
+            permute(I, i, ligne_diff_0)
+            ligne_diff_0 += 1
+        for ligne in range (0,i):
+            if matrice[ligne,colonne] != 0 :    
+                addition_ligne(matrice,ligne,i)
+                addition_ligne(I,ligne,i)    
+        for ligne in range (i + 1,25):
+            if matrice[ligne,colonne] != 0 :    
+                addition_ligne(matrice,ligne,i)
+                addition_ligne(I,ligne,i)
+    return matrice
 
-print("A :")
-print(A)
-print("")
 
-E = pivot_de_gauss_A(A,I)
 
-print("A :")
-print(A)
-print("")
+#print("I :")
+#print(I)
+#print("")
+
+#print("A :")
+#print(A)
+#print("")
+
+E = pivot_de_gauss_full(A,I)
+
+#print("A :")
+#print(A)
+#print("")
 
 print("E :")
 print(E)
