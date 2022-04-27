@@ -9,6 +9,7 @@ a=[1,2,3,4,5]
 b=[1,2,3,4]
 c=[1,0,0,-1]
 d=[0,1,0,0,1]
+g = [1,1,1,1,1]
 e = len(array1)
 f = len(array2[0])
 laulau=np.zeros([e,f])
@@ -54,13 +55,13 @@ def multiplication(m1,m2):
     return resultat
 
 def mult_vecteur(m,v):
-    a=0
     res=[]
     for lig in range(5):
+        a = 0
         for col in range(5):
-            a=plus(a,mult(m[lig,col],v[col]))
+            a = plus(a, mult(m[lig,col],v[col]))
         res.append(a)
-    return v
+    return res
 
 def pivot(m,etape):
     n=len(m)
@@ -133,4 +134,4 @@ def soluble(conf_init):
     # permuter : échange 2 lignes
 #a=transvection2(array1,0)
 #print(a)
-print(mult_vecteur(array1,d))
+print(mult_vecteur(array1,g))

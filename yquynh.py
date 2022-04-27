@@ -176,6 +176,23 @@ def pivot_de_gauss_full (mat, identite):
 
 
 
+array1 = np.matrix(" 1 0 0 1 0 ; 1 0 1 0 1; 1 1 1 0 0; 0 0 1 0 1 ; 0 0 0 0 1 ")
+
+a=[1,1,1,1,1]
+
+def mult_vecteur(m,v):
+    res=[]
+    for lig in range(5):
+        a = 0
+        for col in range(5):
+            a = plus(a, mult(m[lig,col],v[col]))
+        res.append(a)
+    return res
+
+
+print(mult_vecteur(array1,a))
+
+
 #print("I :")
 #print(I)
 #print("")
@@ -184,15 +201,15 @@ def pivot_de_gauss_full (mat, identite):
 #print(A)
 #print("")
 
-E = pivot_de_gauss_full(A,I)
+#E = pivot_de_gauss_full(A,I)
 
 #print("A :")
 #print(A)
 #print("")
 
-print("E :")
-print(E)
-print("")
+#print("E :")
+#print(E)
+#print("")
 
 
 
