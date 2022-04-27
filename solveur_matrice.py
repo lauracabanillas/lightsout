@@ -166,12 +166,14 @@ def solution(invA, conf_init):
     for i in range(len(conf_init)):
         for j in range(5):
             vecteur_init.append(conf_init[i,j])
-    return mult_vecteur(invA,conf_init)
+    return mult_vecteur(invA,vecteur_init)
 
 hello = pivot_de_gauss(A,I)
-print(hello[0])
-print("")
-print(hello[1])
+#print(hello[0])
+#print("")
+#print(hello[1])
+
+print(solution(hello[1], array_solvable))
 
 #print(array_solvable25)
 
