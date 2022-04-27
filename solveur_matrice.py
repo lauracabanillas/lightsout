@@ -58,7 +58,8 @@ def mult_vecteur(m,v):
     return v      
     
 #inutile
-def pivot(m,etape): #renvoie le numéro du pivot qu'on va utiliser : le 1er avec un chiffre différent de 0
+def pivot(m,etape): 
+    #renvoie le numéro du pivot qu'on va utiliser : le 1er avec un chiffre différent de 0
     n=len(m)
     np=etape #numéro d'étape provisoire
         
@@ -68,7 +69,8 @@ def pivot(m,etape): #renvoie le numéro du pivot qu'on va utiliser : le 1er avec
     return np
 
 #inutile
-def transvection(mat, s): #s est le numéro du pivot utilisé / additionne la ligne et la ligne du dessous
+def transvection(mat, s): 
+    #s est le numéro du pivot utilisé / additionne la ligne et la ligne du dessous
     n=len(mat)
     p=25
     result=mat
@@ -88,14 +90,16 @@ def addition_ligne(mat,a,b):
         result[a,col]=plus(result[a,col], result[b,col])
     return result   
 
+a=5
+
 #pivot de gauss
+#retourne matrice et I dans un tuple
 #mais problèmes
-#comment retourner matrice et identité en même temps
 #de plus, il modifie A et I pris en arguments même si j'ai fait une copie, je comprends pas
 def pivot_de_gauss (mat, identite):
     matrice = mat
     I = identite
-    for i in range(25) :
+    for i in range(25) : 
         colonne = i
         ligne_diff_0 = i + 1
         while matrice[i,colonne] == 0 and ligne_diff_0 < 25:
@@ -106,11 +110,10 @@ def pivot_de_gauss (mat, identite):
             if matrice[ligne,colonne] != 0 :    
                 addition_ligne(matrice,ligne,i)
                 addition_ligne(I,ligne,i)
-    return matrice
+    return matrice, I
 
 
 #pour savoir si soluble
-
 def perpendiculaire(a,b):
     somme=0
     if len(a)!=len(b):
@@ -133,8 +136,13 @@ def soluble(conf_init):
            
     return (perpendiculaire(v1, vecteur) and perpendiculaire(v2,vecteur))
 
+def ordre(a,b):
+    if a <= b:
+        return a, b
+    else:
+        return b, a
 
-
-
-
-
+matrice_identite = pivot_de_gauss(A,I)
+print(matrice_identite[0])
+print("")
+print(matrice_identite[1])
