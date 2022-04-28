@@ -61,29 +61,7 @@ def mult_vecteur(m,v):
             a = plus(a, mult(m[lig,col],v[col]))
         res.append(a)
     return res   
-    
-#inutile
-def pivot(m,etape): 
-    #renvoie le numéro du pivot qu'on va utiliser : le 1er avec un chiffre différent de 0
-    n=len(m)
-    np=etape #numéro d'étape provisoire
-        
-    for i in range(etape+1, n):#boucle sur les lignes restantes
-        if abs(m[i, etape])>abs(m[np,etape]) :
-            np=i
-    return np
-
-#inutile
-def transvection(mat, s): 
-    #s est le numéro du pivot utilisé / additionne la ligne et la ligne du dessous
-    n=len(mat)
-    p=25
-    result=mat
-    for lig in range(s+1, n):
-        for col in range(s,p):
-            result[lig, col]=plus(result[lig,col], result[s,col])
-    return result
-        
+         
 def permute(mat,a,b) :  #permute 2 lignes a et b
     for colonne in range (25) : # boucle sur les colonnes
         mat[a,colonne],mat[b,colonne]=mat[b,colonne],mat[a,colonne]
@@ -146,8 +124,11 @@ def perpendiculaire(a,b):
 def soluble(conf_init):
     v1 = recup_vecteur_colonne(pivot_de_gauss(A,I)[0],24)
     v2 = recup_vecteur_colonne(pivot_de_gauss(A,I)[0],25)
-    #v1=[0,1,1,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,0,1,0,1,1,1,0]
-    #v2=[1,0,1,0,1,1,0,1,0,1,0,0,0,0,0,1,0,1,0,1,1,0,1,0,1]
+    v1[23]=1  # on oublie pas de rajouter l'identité
+    v2[24]=1      
+#    v1=[0,1,1,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,0,1,0,1,1,1,0]
+ #   v2=[1,0,1,0,1,1,0,1,0,1,0,0,0,0,0,1,0,1,0,1,1,0,1,0,1]
+
     vecteur = []
     for i in range(len(conf_init)):
         for j in range(5):
@@ -177,7 +158,7 @@ A_diagonalisee=(pivot[0])
 
 invA=pivot[1]
 
-def solution( conf_init):  #comme invA c'est toujours la même, je l'ai enlevée des paramètres 
+def solution(conf_init):  #comme invA c'est toujours la même, je l'ai enlevée des paramètres 
     vecteur_init = []
     for i in range(len(conf_init)):
         for j in range(5):
@@ -193,9 +174,12 @@ def solution( conf_init):  #comme invA c'est toujours la même, je l'ai enlevée
 #print(vecteur25_to_matrice5(v3))
 #print(array_solvable2)
 #print("")
-print(array_solvable5)
+print(array_solvable4)
 print("")
 print(solution(array_solvable5))
+
+
+#print(B)
 
 #print(array_solvable25)
 

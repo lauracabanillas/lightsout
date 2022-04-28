@@ -57,7 +57,8 @@ def mult_vecteur(m,v):
         res.append(a)
     return v
 
-def pivot(m,etape):
+def pivot(m,etape): 
+    #renvoie le numéro du pivot qu'on va utiliser : le 1er avec un chiffre différent de 0
     n=len(m)
     np=etape #numéro d'étape provisoire
         
@@ -66,14 +67,16 @@ def pivot(m,etape):
             np=i
     return np
 
-def transvection(mat, s): #s est le numéro du pivot utilisé
+def transvection(mat, s): 
+    #s est le numéro du pivot utilisé / additionne la ligne et la ligne du dessous
     n=len(mat)
-    p=5
+    p=25
     result=mat
     for lig in range(s+1, n):
         for col in range(s,p):
             result[lig, col]=plus(result[lig,col], result[s,col])
     return result
+
         
 def permute(m,i,j) :
     n=len(m)
