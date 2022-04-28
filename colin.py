@@ -7,12 +7,8 @@ import numpy as np
 
 IMAGE_SIZE = 100
 DIRECTIONS = [
-    #(1,1),
-    (1,0),
-    #(1,-1),
-    #(-1,1),
+    (1,0),  
     (-1,0),
-    #(-1,-1),
     (0,1),
     (0,0),
     (0,-1),
@@ -27,11 +23,13 @@ class game:
         self.images = [lightOn, lightOff]
         self.mode = mode
         self.running = True
-        self.grid = [[math.floor(random()*2) for x in range(5)] for y in range(5)]   
+        self.grid = [[math.floor(random()*2) for x in range(5)] for y in range(5)]  
+        grille=self.grid 
         self.pika = pygame.transform.scale(pygame.image.load("./images/pikatchu.jpg"), (200,400))
         self.bulle1 = pygame.transform.scale(pygame.image.load("./images/image_bulle1.png"), (330,250))
 
     def handling_events(self):
+        matrice_printed=0
         while self.running:
             self.display()
             for event in pygame.event.get():
@@ -42,6 +40,16 @@ class game:
                     if mouse_presses[0]:
                         self.handle_click()
                         print("Left Mouse key was clicked")
+            if not solveur_matrice.soluble(np.matrix(self.grid)):
+                print("la configuration n'etait pas soluble, veuillez recommencer")
+                self.running = False
+            else:
+                if solveur_matrice.soluble(np.matrix(self.grid)) and matrice_printed==0:
+                    print(solveur_matrice.solution(np.matrix(self.grid)))
+                    matrice_printed=1
+            
+            
+            
 
     def handle_click(self):
         pos = pygame.mouse.get_pos()
@@ -62,9 +70,12 @@ class game:
         if not any(0 in x for x in self.grid):
             print("won !")
             self.running = False
-        if not solveur_matrice.soluble(np.matrix(self.grid)):
-            print("la configuration n'etait pas soluble, veuillez recommencer")
-            self.running = False
+#        if not solveur_matrice.soluble(np.matrix(self.grid)):
+ #           print("la configuration n'etait pas soluble, veuillez recommencer")
+  #          self.running = False
+   #     else:
+    #        print(solveur_matrice.solution(np.matrix(self.grid)))
+
 
     def display(self):     #affiche la matrice
         if self.mode == 0:                 #quand on est en mode 0, il affiche juste la matrice dans le terminal
@@ -87,3 +98,4 @@ pygame.init()
 screen = pygame.display.set_mode((1080,720))
 game = game(screen, 1)
 game.run()
+

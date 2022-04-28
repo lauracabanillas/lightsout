@@ -3,10 +3,12 @@ import numpy as np
 
 #inutile et risque d'interférer avec matrice I identité
 #B=np.matrix("1 1 0 0 0 ; 1 1 1 0 0; 0 1 1 1 0; 0 0 1 1 1 ; 0 0 0 1 1 ")
-#I=np.matrix("1 0 0 0 0; 0 1 0 0 0 ; 0 0 1 0 0 ; 0 0 0 1 0 ; 0 0 0 0 1")
+I=np.matrix("1 0 0 0 0; 0 1 0 0 0 ; 0 0 1 0 0 ; 0 0 0 1 0 ; 0 0 0 0 1")
 #O=np.matrix("0 0 0 0 0;0 0 0 0 0;0 0 0 0 0;0 0 0 0 0;0 0 0 0 0")
 
 array_solvable = np.matrix("0 0 0 0 0; 0 0 1 0 0 ; 0 1 1 1 0 ; 0 0 1 0 0 ; 0 0 0 0 0")
+array_solvable2 = np.matrix("1 1 0 1 1; 1 0 0 0 1 ; 0 0 0 0 0 ; 0 0 0 0 1 ; 0 0 0 1 1")
+array_solvable3 = np.matrix("0 1 0 0 0; 1 1 1 1 0 ; 0 1 1 1 1 ; 0 0 0 1 0 ; 0 0 0 0 0")
 array_solvable25 = np.matrix("1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ; 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ")
 
 #matrice A formée des B I O du haut
@@ -19,7 +21,7 @@ B= np.matrix("0 0 1 0 0 0 1 1 0 1 0 0 0 0 1 0 1 1 0 1 1 0 0 0 0; 0 0 0 0 0 0 0 0
 v1=[0,1,1,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,0,1,0,1,1,1,0]
 v2=[1,0,1,0,1,1,0,1,0,1,0,0,0,0,0,1,0,1,0,1,1,0,1,0,1]
 
-
+v3=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 
 def plus(a,b):
@@ -117,7 +119,6 @@ def pivot_de_gauss (mat, identite):
     return matrice, I
 
 
-
 #pour savoir si soluble
 
 def recup_vecteur_colonne(mat,numero): #renvoie le vecteur de la colonne (allant de 1 a 25) 'numero' en liste
@@ -161,19 +162,32 @@ def mult_vecteur(m,v):
         res.append(a)
     return res
 
-def solution(invA, conf_init):
+#j'ai mis la fonction qui transforme un vecteur en matrice plus haut pour pouvoir la rappeler dans solution
+def vecteur25_to_matrice5(v):
+    mat_finale = [[v[i] for i in range(5)],[v[i] for i in [5,6,7,8,9]], [v[i] for i in [10,11,12,13,14]], [v[i] for i in [15,16,17,18,19]], [v[i] for i in [20,21,22,23,24]]]   
+
+    return np.matrix(mat_finale)
+
+pivot = pivot_de_gauss(A,I)
+A_diagonalisee=(pivot[0])
+
+invA=pivot[1]
+
+def solution( conf_init):  #comme invA c'est toujours la même, je l'ai enlevée des paramètres 
     vecteur_init = []
     for i in range(len(conf_init)):
         for j in range(5):
             vecteur_init.append(conf_init[i,j])
-    return mult_vecteur(invA,vecteur_init)
+#pour la conf de solution, c'est plus facile de visualiser sous forme de matrice que de vecteur, donc j'ai appelé Vecteur_to_matrice direct ici
+    return vecteur25_to_matrice5(mult_vecteur(invA,vecteur_init)) 
 
-hello = pivot_de_gauss(A,I)
-#print(hello[0])
-#print("")
-#print(hello[1])
 
-print(solution(hello[1], array_solvable))
+
+
+#print(vecteur25_to_matrice5(v3))
+print(array_solvable2)
+print("")
+print(solution(array_solvable2))
 
 #print(array_solvable25)
 
