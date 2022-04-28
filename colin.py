@@ -24,7 +24,6 @@ class game:
         self.mode = mode
         self.running = True
         self.grid = [[math.floor(random()*2) for x in range(5)] for y in range(5)]  
-        grille=self.grid 
         self.pika = pygame.transform.scale(pygame.image.load("./images/pikatchu.jpg"), (200,400))
         self.bulle1 = pygame.transform.scale(pygame.image.load("./images/image_bulle1.png"), (330,250))
 
@@ -40,7 +39,7 @@ class game:
                     if mouse_presses[0]:
                         self.handle_click()
                         print("Left Mouse key was clicked")
-            if not solveur_matrice.soluble(np.matrix(self.grid)):
+            if not solveur_matrice.soluble(np.matrix(self.grid)) and matrice_printed ==0: 
                 print("la configuration n'etait pas soluble, veuillez recommencer")
                 self.running = False
             else:

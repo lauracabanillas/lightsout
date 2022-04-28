@@ -3,17 +3,11 @@ array1 = np.matrix("1 0 0 0 0 ; 1 0 1 0 1; 1 1 1 0 0; 0 0 1 0 1 ; 0 0 0 0 1 ")
 array2 = np.matrix("0 0 0 0 0; 0 0 0 0 0 ; 0 0 0 0 0 ; 0 0 0 0 0 ; 0 0 0 0 0")
 array_solvable = np.matrix("0 0 0 0 0; 0 0 1 0 0 ; 0 1 1 1 0 ; 0 0 1 0 0 ; 0 0 0 0 0")
 
+A = np.matrix(" 1 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ; 1 1 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;  0 1 1 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ;  0 0 1 1 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ; 0 0 0 1 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ; 1 0 0 0 0 1 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ; 0 1 0 0 0 1 1 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 ; 0 0 1 0 0 0 1 1 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 ;  0 0 0 1 0 0 0 1 1 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 ;  0 0 0 0 1 0 0 0 1 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 ;0 0 0 0 0 1 0 0 0 0 1 1 0 0 0 1 0 0 0 0 0 0 0 0 0 ; 0 0 0 0 0 0 1 0 0 0 1 1 1 0 0 0 1 0 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 1 0 0 0 1 1 1 0 0 0 1 0 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 1 0 0 0 1 1 1 0 0 0 1 0 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 0 0 0 0 1 0 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 1 0 0 0 1 0 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 1 0 0 0 1 0 0 0 ;0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 1 0 0 0 1 0 0 ; 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 1 0 0 0 1 0 ;0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 0 0 0 0 1 ;  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 1 0 0 0 ;  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 1 0 0 ; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 1 0 ; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 1 ; 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 ")
+
 v1=[0,1,1,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,0,1,0,1,1,1,0]
 v2=[1,0,1,0,1,1,0,1,0,1,0,0,0,0,0,1,0,1,0,1,1,0,1,0,1]
-a=[1,2,3,4,5]
-b=[1,2,3,4]
-c=[1,0,0,-1]
-d=[0,1,0,0,1]
-g = [1,1,1,1,1]
-e = len(array1)
-f = len(array2[0])
-laulau=np.zeros([e,f])
-#resultat = np.matrix(np.zeros((5,5)))
+
 
 def plus(a,b):
     if a==b:
@@ -55,13 +49,13 @@ def multiplication(m1,m2):
     return resultat
 
 def mult_vecteur(m,v):
+    a=0
     res=[]
     for lig in range(5):
-        a = 0
         for col in range(5):
-            a = plus(a, mult(m[lig,col],v[col]))
+            a=plus(a,mult(m[lig,col],v[col]))
         res.append(a)
-    return res
+    return v
 
 def pivot(m,etape):
     n=len(m)
@@ -127,11 +121,18 @@ def soluble(conf_init):
             vecteur.append(conf_init[i,j])
            
     return (perpendiculaire(v1, vecteur) and perpendiculaire(v2,vecteur))
-        
 
+def solution(invA, conf_init):
+    vecteur_init = []
+    for i in range(len(conf_init)):
+        for j in range(5):
+            vecteur_init.append(conf_init[i,j])
+    return mult_vecteur(invA,conf_init)
 
     # pivot : renvoie la ligne du 1er truc dont le coef est différent de 0 en haut à gauche, et de plus en plus à droite, qui prend en argument l'étape à laquelle on est
     # permuter : échange 2 lignes
 #a=transvection2(array1,0)
 #print(a)
-print(mult_vecteur(array1,g))
+#print(mult_vecteur(array1,d))
+
+print(A)
