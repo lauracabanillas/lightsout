@@ -159,6 +159,7 @@ A_diagonalisee=(pivot[0])
 invA=pivot[1]
 
 def solution(conf_init):  #comme invA c'est toujours la même, je l'ai enlevée des paramètres 
+    invA = np.matrix("0 0 0 0 0 1 0 0 0 0 1 1 0 0 0 1 0 1 0 0 0 1 1 1 0; 0 1 1 1 0 1 1 1 0 1 0 0 1 1 1 1 0 1 1 1 1 0 1 0 1; 0 1 1 0 0 1 0 1 1 0 1 1 1 0 1 1 1 1 1 1 1 0 0 1 1; 0 1 0 0 1 1 1 1 0 1 0 0 0 0 0 1 1 1 0 1 0 1 0 0 1; 0 0 0 1 1 0 0 1 0 1 0 1 1 1 0 1 0 0 0 0 1 0 1 1 0; 1 1 1 1 0 0 1 1 0 1 1 1 1 1 1 0 0 0 1 1 1 1 0 1 1; 0 1 0 1 0 1 1 0 1 1 0 0 0 1 0 1 1 1 0 0 0 1 0 0 0; 0 1 1 1 1 1 0 1 1 0 1 1 0 1 0 1 0 1 0 1 0 1 1 1 1; 0 0 1 0 0 0 1 1 1 0 1 0 0 1 1 1 0 0 1 0 0 1 1 0 0; 0 1 0 1 1 1 1 0 0 0 0 1 1 1 0 0 1 1 0 1 1 1 1 1 1; 1 0 1 0 0 1 0 1 1 0 0 0 1 0 1 0 1 0 1 1 1 1 1 0 1; 1 0 1 0 1 1 0 1 0 1 0 0 0 0 0 1 1 1 0 1 0 1 0 0 1; 0 1 1 0 1 1 0 0 0 1 1 0 1 1 0 0 0 1 0 0 1 1 0 0 0; 0 1 0 0 1 1 1 1 1 1 0 0 1 1 1 1 0 1 1 1 1 0 1 0 1; 0 1 1 0 0 1 0 0 1 0 1 0 0 1 1 0 1 1 1 1 0 0 1 0 1; 1 1 1 1 1 0 1 1 1 0 0 1 0 1 0 1 0 1 0 1 0 1 1 1 1; 0 0 1 1 0 0 1 0 0 1 1 1 0 0 1 0 1 1 1 0 0 0 1 0 0; 1 1 1 1 0 0 1 1 0 1 0 1 1 1 1 1 1 0 1 1 0 1 0 1 1; 0 1 1 0 0 1 0 0 1 0 1 0 0 1 1 0 1 1 1 0 0 0 1 0 0; 0 1 1 1 0 1 0 1 0 1 1 1 0 1 1 1 0 1 0 1 0 1 1 1 1; 0 1 1 0 1 1 0 0 0 1 1 0 1 1 0 0 0 0 0 0 1 0 1 1 0; 1 0 0 1 0 1 1 1 1 1 1 1 1 0 0 1 0 1 0 1 0 1 0 0 1; 1 1 0 0 1 0 0 1 1 1 1 0 0 1 1 1 1 0 1 1 1 0 0 1 1; 1 0 1 0 1 1 0 1 0 1 0 0 0 0 0 1 0 1 0 1 1 0 1 0 1; 0 1 1 1 0 1 0 1 0 1 1 1 0 1 1 1 0 1 0 1 0 1 1 1 0")
     vecteur_init = []
     for i in range(len(conf_init)):
         for j in range(5):
@@ -167,16 +168,18 @@ def solution(conf_init):  #comme invA c'est toujours la même, je l'ai enlevée 
     return vecteur25_to_matrice5(mult_vecteur(invA,vecteur_init)) 
 
 
+#print(pivot[1])
+
+
+
 
 #print(A_diagonalisee)
 #print(pivot_de_gauss[0])
 
 #print(vecteur25_to_matrice5(v3))
-print(array_solvable2)
-print("")
-print(solution(array_solvable2))
+#print(array_solvable2)
+#print("")
+#print(solution(array_solvable2))
 
-
-#print(B)
 
 #print(mult_vecteur(hello[1],array_solvable))
