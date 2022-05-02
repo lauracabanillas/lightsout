@@ -3,6 +3,7 @@ from random import random
 import pygame
 import time
 import solveur_matrice
+import Tester_Solveur_Matrice
 import numpy as np
 
 IMAGE_SIZE = 100
@@ -20,10 +21,11 @@ lightOff = pygame.transform.scale(pygame.image.load("./images/light_out.jpg"), (
 class game:
     def __init__(self, screen, mode=0) -> None:
         self.screen = screen
-        self.images = [lightOn, lightOff]
+        self.images = [lightOff, lightOn]
         self.mode = mode
         self.running = True
-        self.grid = [[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1]]  
+        self.grid = [[math.floor(random()*2) for x in range(5)] for y in range(5)]  
+        #self.grid = [[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1]]  
         self.pika = pygame.transform.scale(pygame.image.load("./images/pikatchu.jpg"), (200,400))
         self.bulle1 = pygame.transform.scale(pygame.image.load("./images/image_bulle1.png"), (330,250))
 
@@ -39,13 +41,13 @@ class game:
                     if mouse_presses[0]:
                         self.handle_click()
                         print("Left Mouse key was clicked")
-            if not solveur_matrice.soluble(np.matrix(self.grid)) and matrice_printed ==0: 
+            if not Tester_Solveur_Matrice.soluble(np.matrix(self.grid)) and matrice_printed ==0: 
                 print("la configuration n'etait pas soluble, veuillez recommencer")
                 self.running = False
             else:
-                if solveur_matrice.soluble(np.matrix(self.grid)) and matrice_printed==0:
-                    print(solveur_matrice.solution(np.matrix(self.grid)))
-                    matrice_printed=1
+                if Tester_Solveur_Matrice.soluble(np.matrix(self.grid)) and matrice_printed==0:
+                    print(self.grid)
+                    print(Tester_Solveur_Matrice.solution(np.matrix(self.grid)))
             
             
             

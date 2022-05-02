@@ -1,5 +1,7 @@
 import numpy as np
 
+
+#variables
 v1=[0,1,1,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,0,1,0,1,1,1,0]
 v2=[1,0,1,0,1,1,0,1,0,1,0,0,0,0,0,1,0,1,0,1,1,0,1,0,1]
 v3=[0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -17,6 +19,18 @@ O_5=np.matrix("0 0 0 0 0;0 0 0 0 0;0 0 0 0 0;0 0 0 0 0;0 0 0 0 0")
 
 array1 = np.matrix(" 1 0 0 0 0 ; 1 0 1 0 1 ; 1 1 1 0 0 ; 0 0 1 0 1 ; 0 0 0 0 1 ")
 array2 = np.matrix(" 0 0 0 0 0 ; 0 0 0 0 0 ; 0 0 0 0 0 ; 0 0 0 0 0 ; 0 0 0 0 0 ")
+
+#comment retrouver les variables (ne marche pas ici, il faut que ce soit après les fonctions)
+pivot = pivot_de_gauss(A,I)
+A_modif = pivot[0]
+I_modif = pivot[1]
+
+
+v1 = recup_vecteur_colonne(A_modif,24)
+v1[23]=1
+
+v2 = recup_vecteur_colonne(A_modif,25)
+v2[24]=1
 
 
 def plus(a,b):
@@ -118,15 +132,4 @@ def vecteur25_to_matrice5(v):
     return np.matrix(mat_finale)
 
 
-pivot = pivot_de_gauss(A,I)
-
-A_modif = pivot[0]
-I_modif = pivot[1]
-
-
-v1 = recup_vecteur_colonne(A_modif,24)
-v1[23]=1
-
-v2 = recup_vecteur_colonne(A_modif,25)
-v2[24]=1
 
