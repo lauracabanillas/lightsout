@@ -5,6 +5,9 @@ import time
 import solveur_matrice
 import numpy as np
 
+#hello
+#je ne sais pas
+
 IMAGE_SIZE = 100
 DIRECTIONS = [
     (1,0),  
