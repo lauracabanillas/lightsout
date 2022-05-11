@@ -21,7 +21,7 @@ lightOff = pygame.transform.scale(pygame.image.load("./images/light_out.jpg"), (
 class game:
     def __init__(self, screen, mode=0) -> None:
         self.screen = screen
-        self.images = [lightOn, lightOff]
+        self.images = [lightOff, lightOn]
         self.mode = mode
         self.running = True
         self.grid = [[math.floor(random()*2) for x in range(5)] for y in range(5)]  
